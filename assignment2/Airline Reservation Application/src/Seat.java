@@ -17,7 +17,7 @@ public class Seat
 	@Override
 	public String toString()
 	{
-		return type.toString() + "[" + (isReserved?"X":" ") + "]";
+		return (isFirstClass?type.toString():type.toString().toLowerCase()) + "[" + (isReserved?"X":" ") + "]";
 	}
 	
 	public String seatDescription()
