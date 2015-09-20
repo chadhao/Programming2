@@ -6,6 +6,21 @@ public abstract class SeatMap
 	private int numOfColumns;
 	private int numOfFirstClass;
 	
+	@Override
+	public String toString()
+	{
+		String aString = "";
+		for (Seat[] row : seatMap)
+		{
+			for (Seat column : row)
+			{
+				aString += column + " ";
+			}
+			aString += "\n";
+		}
+		return aString;
+	}
+	
 	public abstract void initialiseSeatMap();
 	
 	public Seat[][] getSeatMap()
@@ -125,20 +140,5 @@ public abstract class SeatMap
 	{
 		Seat aSeat = searchAvailableSeat(true, numOfFirstClass, numOfRows, seatType);
 		return aSeat == null?searchAvailableSeat(false, numOfFirstClass, numOfRows, seatType):aSeat;
-	}
-	
-	@Override
-	public String toString()
-	{
-		String aString = "";
-		for (Seat[] row : seatMap)
-		{
-			for (Seat column : row)
-			{
-				aString += column + " ";
-			}
-			aString += "\n";
-		}
-		return aString;
 	}
 }
