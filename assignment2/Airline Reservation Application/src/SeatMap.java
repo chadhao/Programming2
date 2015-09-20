@@ -138,7 +138,7 @@ public abstract class SeatMap
 	
 	public Seat queryAvailableFirstClassSeat(SeatType seatType)
 	{
-		Seat aSeat = searchAvailableSeat(true, numOfFirstClass, numOfRows, seatType);
-		return aSeat == null?searchAvailableSeat(false, numOfFirstClass, numOfRows, seatType):aSeat;
+		Seat aSeat = searchAvailableSeat(true, 0, numOfFirstClass, seatType);
+		return aSeat == null?searchAvailableSeat(false, 0, numOfFirstClass, seatType):aSeat;
 	}
 }
