@@ -25,5 +25,23 @@ public class Seat
 		return (isFirstClass?"First":"Economy") + " class " + type.getTypeName() + " seat at: " + position + " is" + (isReserved?" ":" not ") + "reserved.";
 	}
 	
+	public SeatPosition getPosition()
+	{
+		return position;
+	}
 	
+	public SeatType getType()
+	{
+		return type;
+	}
+	
+	public boolean isReserved()
+	{
+		return isReserved;
+	}
+	
+	public boolean isFirstClass()
+	{
+		return isFirstClass;
+	}
 }

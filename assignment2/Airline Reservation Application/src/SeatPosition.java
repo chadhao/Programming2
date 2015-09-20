@@ -15,4 +15,14 @@ public class SeatPosition
 	{
 		return Integer.toString(row)+column;
 	}
+	
+	public int getRow()
+	{
+		return row;
+	}
+	
+	public char getColumn()
+	{
+		return column;
+	}
 }
