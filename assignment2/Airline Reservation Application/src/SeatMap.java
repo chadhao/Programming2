@@ -20,8 +20,8 @@ public abstract class SeatMap
 		}
 		return aString;
 	}
-	
-	public abstract void initialiseSeatMap();
+
+	protected abstract void initialiseSeatMap();
 	
 	public Seat[][] getSeatMap()
 	{
@@ -43,24 +43,29 @@ public abstract class SeatMap
 		return numOfFirstClass;
 	}
 	
-	public void setSeatMap(Seat[][] seatMap)
+	protected void setSeatMap(Seat[][] seatMap)
 	{
 		this.seatMap = seatMap;
 	}
 	
-	public void setNumOfRows(int numOfRows)
+	protected void setNumOfRows(int numOfRows)
 	{
 		this.numOfRows = numOfRows;
 	}
 	
-	public void setNumOfColumns(int numOfColumns)
+	protected void setNumOfColumns(int numOfColumns)
 	{
 		this.numOfColumns = numOfColumns;
 	}
 	
-	public void setNumOfFirstClass(int numOfFirstClass)
+	protected void setNumOfFirstClass(int numOfFirstClass)
 	{
 		this.numOfFirstClass = numOfFirstClass;
+	}
+	
+	protected void setASeat(int row, int column, Seat aSeat)
+	{
+		this.seatMap[row][column] = aSeat;
 	}
 	
 	public int lastRow()
