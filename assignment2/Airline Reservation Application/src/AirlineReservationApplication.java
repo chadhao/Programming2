@@ -4,9 +4,9 @@ public class AirlineReservationApplication
 
 	public static void main(String[] args)
 	{
-		Seat aSeat = new Seat(new SeatPosition(10, 'K'), SeatType.A, false);
-		System.out.println(aSeat.seatDescription());
-		System.out.println(aSeat);
+		SeatMap seats = new AirBusSeatMap();
+		System.out.println(seats.getLeft(seats.getSeat(5, 'D')).seatDescription());
+		
 	}
 
 }

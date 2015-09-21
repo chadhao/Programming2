@@ -44,4 +44,9 @@ public class Seat
 	{
 		return isFirstClass;
 	}
+	
+	public void reserveSeat()
+	{
+		this.isReserved = true;
+	}
 }
