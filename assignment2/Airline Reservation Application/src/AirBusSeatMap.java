@@ -9,7 +9,7 @@ public class AirBusSeatMap extends SeatMap
 		setSeatMap(new Seat[12][9]);
 		initialiseSeatMap();
 	}
-	
+
 	protected void initialiseSeatMap()
 	{
 		for (int i = 0; i < getNumOfRows(); i++)
