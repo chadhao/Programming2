@@ -8,7 +8,13 @@ public class MoneyTransfer
 	
 	public MoneyTransfer(CustomerAccount from, CustomerAccount to, double amount) throws MoneyTransferException
 	{
-		if (to.getName() == from.getName())
+		if (from == null || to == null)
+		{
+			MoneyTransferException mte = new MoneyTransferException("Customer account cannot be null!");
+			mte.setTimeStamp(System.currentTimeMillis());
+			throw mte;
+		}
+		else if (to.getName() == from.getName())
 		{
 			MoneyTransferException mte = new MoneyTransferException("Customer accounts cannot be identical!");
 			mte.setTimeStamp(System.currentTimeMillis());
@@ -35,18 +41,9 @@ public class MoneyTransfer
 		return to;
 	}
 
-	public void setTo(CustomerAccount to) throws MoneyTransferException
+	public void setTo(CustomerAccount to)
 	{
-		if (to == null)
-		{
-			MoneyTransferException mte = new MoneyTransferException("Customer account cannot be null!");
-			mte.setTimeStamp(System.currentTimeMillis());
-			throw mte;
-		}
-		else
-		{
-			this.to = to;
-		}
+		this.to = to;
 	}
 
 	public CustomerAccount getFrom()
@@ -54,18 +51,9 @@ public class MoneyTransfer
 		return from;
 	}
 
-	public void setFrom(CustomerAccount from) throws MoneyTransferException
+	public void setFrom(CustomerAccount from)
 	{
-		if (from == null)
-		{
-			MoneyTransferException mte = new MoneyTransferException("Customer account cannot be null!");
-			mte.setTimeStamp(System.currentTimeMillis());
-			throw mte;
-		}
-		else
-		{
-			this.from = from;
-		}
+		this.from = from;
 	}
 
 	public double getAmount()
