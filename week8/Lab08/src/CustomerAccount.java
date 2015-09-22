@@ -3,7 +3,7 @@ public class CustomerAccount
 {
 	private String name;
 	
-	public CustomerAccount(String name) throws IllegalArgumentException
+	public CustomerAccount(String name) throws CustomerAccountNameCannotBeNull
 	{
 		setName(name);
 	}
@@ -19,11 +19,11 @@ public class CustomerAccount
 		return name;
 	}
 
-	public void setName(String name) throws IllegalArgumentException
+	public void setName(String name) throws CustomerAccountNameCannotBeNull
 	{
 		if (name == null || name == "")
 		{
-			throw new IllegalArgumentException();
+			throw new CustomerAccountNameCannotBeNull();
 		}
 		else
 		{
