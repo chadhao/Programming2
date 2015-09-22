@@ -6,12 +6,20 @@ public class MoneyTransfer
 	private double amount;
 	private long timeStamp;
 	
-	public MoneyTransfer(CustomerAccount to, CustomerAccount from, double amount)
+	public MoneyTransfer(CustomerAccount to, CustomerAccount from, double amount) throws MoneyTransferException
 	{
-		this.to = to;
-		this.from = from;
-		this.amount = amount;
-		this.timeStamp = System.currentTimeMillis();
+		if (to.getName() == from.getName())
+		{
+			throw new MoneyTransferException("Customer accounts cannot be identical!");
+		}
+		else
+		{
+			setTo(to);
+			setFrom(from);
+			setAmount(amount);
+			this.timeStamp = System.currentTimeMillis();
+		}
+		
 	}
 
 	@Override
@@ -25,9 +33,16 @@ public class MoneyTransfer
 		return to;
 	}
 
-	public void setTo(CustomerAccount to)
+	public void setTo(CustomerAccount to) throws MoneyTransferException
 	{
-		this.to = to;
+		if (to == null)
+		{
+			throw new MoneyTransferException("Customer account cannot be null!");
+		}
+		else
+		{
+			this.to = to;
+		}
 	}
 
 	public CustomerAccount getFrom()
@@ -35,9 +50,16 @@ public class MoneyTransfer
 		return from;
 	}
 
-	public void setFrom(CustomerAccount from)
+	public void setFrom(CustomerAccount from) throws MoneyTransferException
 	{
-		this.from = from;
+		if (from == null)
+		{
+			throw new MoneyTransferException("Customer account cannot be null!");
+		}
+		else
+		{
+			this.from = from;
+		}
 	}
 
 	public double getAmount()
@@ -45,9 +67,16 @@ public class MoneyTransfer
 		return amount;
 	}
 
-	public void setAmount(double amount)
+	public void setAmount(double amount) throws MoneyTransferException
 	{
-		this.amount = amount;
+		if (amount <= 0)
+		{
+			throw new MoneyTransferException("Amount must be positive!");
+		}
+		else
+		{
+			this.amount = amount;
+		}
 	}
 
 	public long getTimeStamp()
