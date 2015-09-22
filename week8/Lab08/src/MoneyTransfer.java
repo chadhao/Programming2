@@ -6,7 +6,7 @@ public class MoneyTransfer
 	private double amount;
 	private long timeStamp;
 	
-	public MoneyTransfer(CustomerAccount to, CustomerAccount from, double amount) throws MoneyTransferException
+	public MoneyTransfer(CustomerAccount from, CustomerAccount to, double amount) throws MoneyTransferException
 	{
 		if (to.getName() == from.getName())
 		{
