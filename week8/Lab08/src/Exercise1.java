@@ -3,7 +3,7 @@ public class Exercise1
 {
 	static boolean CAUSE_EXCEPTION = false;
 	
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		try
 		{

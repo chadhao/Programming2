@@ -14,7 +14,7 @@ public class Exercise3
 		System.out.println("Product is: " + (value1*value2));
 	}
 	
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		scanner = new Scanner(System.in);
 		System.out.println("Welcome to the calculator.");
