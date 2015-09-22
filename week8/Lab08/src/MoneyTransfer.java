@@ -10,7 +10,9 @@ public class MoneyTransfer
 	{
 		if (to.getName() == from.getName())
 		{
-			throw new MoneyTransferException("Customer accounts cannot be identical!");
+			MoneyTransferException mte = new MoneyTransferException("Customer accounts cannot be identical!");
+			mte.setTimeStamp(System.currentTimeMillis());
+			throw mte;
 		}
 		else
 		{
@@ -37,7 +39,9 @@ public class MoneyTransfer
 	{
 		if (to == null)
 		{
-			throw new MoneyTransferException("Customer account cannot be null!");
+			MoneyTransferException mte = new MoneyTransferException("Customer account cannot be null!");
+			mte.setTimeStamp(System.currentTimeMillis());
+			throw mte;
 		}
 		else
 		{
@@ -54,7 +58,9 @@ public class MoneyTransfer
 	{
 		if (from == null)
 		{
-			throw new MoneyTransferException("Customer account cannot be null!");
+			MoneyTransferException mte = new MoneyTransferException("Customer account cannot be null!");
+			mte.setTimeStamp(System.currentTimeMillis());
+			throw mte;
 		}
 		else
 		{
@@ -71,7 +77,9 @@ public class MoneyTransfer
 	{
 		if (amount <= 0)
 		{
-			throw new MoneyTransferException("Amount must be positive!");
+			MoneyTransferException mte =  new MoneyTransferException("Amount must be positive!");
+			mte.setTimeStamp(System.currentTimeMillis());
+			throw mte;
 		}
 		else
 		{
