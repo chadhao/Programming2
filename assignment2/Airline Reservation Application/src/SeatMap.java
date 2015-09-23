@@ -10,11 +10,14 @@ public abstract class SeatMap
 	public String toString()
 	{
 		String aString = "   |";
+		String seperateLine = "\n---|";
 		for (int i = 0; i < numOfColumns; i++)
 		{
 			aString += "   " + (char)(Character.valueOf('A')+i) + "  |";
+			seperateLine += "------|";
 		}
-		aString += "\n---|------|------|------|------|------|------|------|\n";
+		seperateLine += "\n";
+		aString += seperateLine;
 		for (int i = 0; i < numOfRows; i++)
 		{
 			aString += (i+1) + (i<9?"  | ":" | ");
@@ -22,7 +25,7 @@ public abstract class SeatMap
 			{
 				aString += seatMap[i][j] + " | ";
 			}
-			aString += "\n---|------|------|------|------|------|------|------|\n";
+			aString += seperateLine;
 		}
 		return aString;
 	}
