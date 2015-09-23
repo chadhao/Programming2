@@ -9,14 +9,20 @@ public abstract class SeatMap
 	@Override
 	public String toString()
 	{
-		String aString = "";
-		for (Seat[] row : seatMap)
+		String aString = "   |";
+		for (int i = 0; i < numOfColumns; i++)
 		{
-			for (Seat column : row)
+			aString += "   " + (char)(Character.valueOf('A')+i) + "  |";
+		}
+		aString += "\n---|------|------|------|------|------|------|------|\n";
+		for (int i = 0; i < numOfRows; i++)
+		{
+			aString += (i+1) + (i<9?"  | ":" | ");
+			for (int j = 0; j < numOfColumns; j++)
 			{
-				aString += column + " ";
+				aString += seatMap[i][j] + " | ";
 			}
-			aString += "\n";
+			aString += "\n---|------|------|------|------|------|------|------|\n";
 		}
 		return aString;
 	}
