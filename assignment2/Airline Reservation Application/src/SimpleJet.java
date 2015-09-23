@@ -16,19 +16,49 @@ public class SimpleJet extends Airline
 		}
 		else
 		{
-			if (aFlight.getSeats().queryAvailableEconomySeat(SeatType.M) != null && aFlight.getSeats().queryAvailableEconomySeat(SeatType.M).getType() == SeatType.M)
+			for (int i = aFlight.getSeats().getNumOfFirstClass(); i < aFlight.getSeats().getNumOfRows(); i++)
 			{
-				if (aFlight.getSeats().getLeft(aFlight.getSeats().queryAvailableEconomySeat(SeatType.M)) != null)
+				for (int j = 0; j < aFlight.getSeats().getNumOfColumns(); i++)
 				{
-					aSeat = aFlight.getSeats().queryAvailableEconomySeat(SeatType.M);
-					aSeat.reserveSeat();
-					aFlight.getSeats().getLeft(aSeat).reserveSeat();
+					Seat seatNow = aFlight.getSeats().getSeat(i+1, (char)(Character.valueOf('A')+j));
+					if (!seatNow.isReserved() && seatNow.getType() == SeatType.W)
+					{
+						if (j == 0 && !aFlight.getSeats().getRight(seatNow).isReserved())
+						{
+							aSeat = seatNow;
+							aSeat.reserveSeat();
+							aFlight.getSeats().getRight(seatNow).reserveSeat();
+							break;
+						}
+						else if (j == aFlight.getSeats().getNumOfColumns()-1 && !aFlight.getSeats().getLeft(seatNow).isReserved())
+						{
+							aSeat = seatNow;
+							aSeat.reserveSeat();
+							aFlight.getSeats().getLeft(seatNow).reserveSeat();
+							break;
+						}
+					}
+					else if (!seatNow.isReserved() && seatNow.getType() == SeatType.M)
+					{
+						if (!aFlight.getSeats().getLeft(seatNow).isReserved())
+						{
+							aSeat = seatNow;
+							aSeat.reserveSeat();
+							aFlight.getSeats().getLeft(seatNow).reserveSeat();
+							break;
+						}
+						else if (!aFlight.getSeats().getRight(seatNow).isReserved())
+						{
+							aSeat = seatNow;
+							aSeat.reserveSeat();
+							aFlight.getSeats().getRight(seatNow).reserveSeat();
+							break;
+						}
+					}
 				}
-				else if (aFlight.getSeats().getRight(aFlight.getSeats().queryAvailableEconomySeat(SeatType.M)) != null)
+				if (aSeat != null)
 				{
-					aSeat = aFlight.getSeats().queryAvailableEconomySeat(SeatType.M);
-					aSeat.reserveSeat();
-					aFlight.getSeats().getRight(aSeat).reserveSeat();
+					break;
 				}
 			}
 		}
@@ -37,6 +67,12 @@ public class SimpleJet extends Airline
 	
 	public Seat reserveEconomy(Flight aFlight, SeatType seatType)
 	{
-		
+		Seat aSeat = null;
+		if (aFlight.getSeats().queryAvailableEconomySeat(seatType) != null)
+		{
+			aSeat = aFlight.getSeats().queryAvailableEconomySeat(seatType);
+			aSeat.reserveSeat();
+		}
+		return aSeat;
 	}
 }
