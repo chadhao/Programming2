@@ -18,15 +18,15 @@ public class AirBusSeatMap extends SeatMap
 			{
 				if (j == 1 || j == 4 || j == 7)
 				{
-					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)(Character.valueOf('A') + j)), SeatType.M, (i<getNumOfFirstClass()?true:false)));
+					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)('A' + j)), SeatType.M, (i<getNumOfFirstClass()?true:false)));
 				}
 				else if (j == 0 || j == 8)
 				{
-					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)(Character.valueOf('A') + j)), SeatType.W, (i<getNumOfFirstClass()?true:false)));
+					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)('A' + j)), SeatType.W, (i<getNumOfFirstClass()?true:false)));
 				}
 				else
 				{
-					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)(Character.valueOf('A') + j)), SeatType.A, (i<getNumOfFirstClass()?true:false)));
+					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)('A' + j)), SeatType.A, (i<getNumOfFirstClass()?true:false)));
 				}
 			}
 		}
