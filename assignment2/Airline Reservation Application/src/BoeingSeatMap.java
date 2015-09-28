@@ -7,7 +7,6 @@ public class BoeingSeatMap extends SeatMap
 		setNumOfColumns(7);
 		setNumOfFirstClass(4);
 		setSeatMap(new Seat[10][7]);
-		setAircraftModel("Boeing");
 		initialiseSeatMap();
 	}
 	

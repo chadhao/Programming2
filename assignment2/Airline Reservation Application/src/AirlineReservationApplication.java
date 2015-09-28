@@ -6,7 +6,7 @@ public class AirlineReservationApplication
 	public static void main(String[] args)
 	{
 		SeatMap seats = new BoeingSeatMap();
-		Flight aFlight = new Flight("CZ306", "GUANGZHOU", "AUCKLAND", 0, 10, seats);
+		Flight aFlight = new Flight("CZ306", "GUANGZHOU", "AUCKLAND", "Boeing", 0, 10, seats);
 		System.out.println(aFlight.getSeats());
 		fillFirstClass(aFlight.getSeats());
 		System.out.println(aFlight.getSeats());
