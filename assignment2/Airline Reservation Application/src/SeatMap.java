@@ -13,7 +13,7 @@ public abstract class SeatMap
 		String seperateLine = "\n---|";
 		for (int i = 0; i < numOfColumns; i++)
 		{
-			aString += "   " + (char)(Character.valueOf('A')+i) + "  |";
+			aString += "   " + (char)('A'+i) + "  |";
 			seperateLine += "------|";
 		}
 		seperateLine += "\n";
@@ -79,37 +79,27 @@ public abstract class SeatMap
 	
 	public int lastRow()
 	{
-		return numOfRows+1;
+		return numOfRows;
 	}
 	
 	public char lastColumn()
 	{
-		return (char)(Character.valueOf('A') + (numOfColumns-1));
+		return (char)('A' + (numOfColumns - 1));
 	}
 	
 	public Seat getSeat(int row, char column)
 	{
-		return seatMap[row-1][Character.valueOf(column) - Character.valueOf('A')];
+		return seatMap[row-1][column - 'A'];
 	}
 	
 	public Seat getLeft(Seat originSeat)
 	{
-		/*
-		int row = originSeat.getPosition().getRow() - 1;
-		int column = Character.valueOf(originSeat.getPosition().getColumn()) - Character.valueOf('A') - 1;
-		Seat aSeat = column >= 0?seatMap[row][column]:null;
-		*/
-		return (Character.valueOf(originSeat.getPosition().getColumn()) - Character.valueOf('A') - 1) >= 0?seatMap[originSeat.getPosition().getRow() - 1][Character.valueOf(originSeat.getPosition().getColumn()) - Character.valueOf('A') - 1]:null;
+		return (originSeat.getPosition().getColumn() - 'A' - 1) >= 0?seatMap[originSeat.getPosition().getRow() - 1][originSeat.getPosition().getColumn() - 'A' - 1]:null;
 	}
 	
 	public Seat getRight(Seat originSeat)
 	{
-		/*
-		int row = originSeat.getPosition().getRow() - 1;
-		int column = Character.valueOf(originSeat.getPosition().getColumn()) - Character.valueOf('A') + 1;
-		Seat aSeat = column < numOfColumns?seatMap[row][column]:null;
-		*/
-		return (Character.valueOf(originSeat.getPosition().getColumn()) - Character.valueOf('A') + 1) < numOfColumns?seatMap[originSeat.getPosition().getRow() - 1][Character.valueOf(originSeat.getPosition().getColumn()) - Character.valueOf('A') + 1]:null;
+		return (originSeat.getPosition().getColumn() - 'A' + 1) < numOfColumns?seatMap[originSeat.getPosition().getRow() - 1][originSeat.getPosition().getColumn() - 'A' + 1]:null;
 	}
 	
 	private Seat searchAvailableSeat(boolean typedSearch, int beginRow, int endRow, SeatType seatType)

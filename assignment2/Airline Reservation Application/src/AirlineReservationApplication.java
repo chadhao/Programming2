@@ -17,6 +17,9 @@ public class AirlineReservationApplication
 		System.out.println(ra.reserveFirstClass(aFlight, SeatType.W));
 		
 		System.out.println(aFlight.getSeats());
+		
+		System.out.println(aFlight.getSeats().lastColumn());
+		System.out.println(aFlight.getSeats().lastRow());
 	}
 	
 	public static void randomFillSeats(SeatMap seats)
