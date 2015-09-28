@@ -20,7 +20,7 @@ public class RynoAir extends Airline
 			{
 				for (int j = 0; j < aFlight.getSeats().getNumOfColumns(); j++)
 				{
-					Seat seatNow = aFlight.getSeats().getSeat(i+1, (char)(Character.valueOf('A')+j));
+					Seat seatNow = aFlight.getSeats().getSeat(i+1, (char)('A'+j));
 					if (!seatNow.isReserved() && seatNow.getType() == SeatType.M)
 					{
 						if (!aFlight.getSeats().getLeft(seatNow).isReserved() && !aFlight.getSeats().getRight(seatNow).isReserved())
