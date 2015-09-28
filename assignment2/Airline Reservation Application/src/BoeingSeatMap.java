@@ -18,15 +18,15 @@ public class BoeingSeatMap extends SeatMap
 			{
 				if (j == 3)
 				{
-					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)(Character.valueOf('A') + j)), SeatType.M, (i<getNumOfFirstClass()?true:false)));
+					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)('A' + j)), SeatType.M, (i<getNumOfFirstClass()?true:false)));
 				}
 				else if (j == 0 || j == 6)
 				{
-					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)(Character.valueOf('A') + j)), SeatType.W, (i<getNumOfFirstClass()?true:false)));
+					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)('A' + j)), SeatType.W, (i<getNumOfFirstClass()?true:false)));
 				}
 				else
 				{
-					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)(Character.valueOf('A') + j)), SeatType.A, (i<getNumOfFirstClass()?true:false)));
+					setASeat(i, j, new Seat(new SeatPosition(i+1, (char)('A' + j)), SeatType.A, (i<getNumOfFirstClass()?true:false)));
 				}
 			}
 		}
