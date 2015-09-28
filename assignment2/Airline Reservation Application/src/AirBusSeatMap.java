@@ -6,6 +6,7 @@ public class AirBusSeatMap extends SeatMap
 		setNumOfRows(12);
 		setNumOfColumns(9);
 		setNumOfFirstClass(6);
+		setAircraftModel("Airbus");
 		setSeatMap(new Seat[12][9]);
 		initialiseSeatMap();
 	}
