@@ -5,6 +5,7 @@ public abstract class SeatMap
 	private int numOfRows;
 	private int numOfColumns;
 	private int numOfFirstClass;
+	private String aircraftModel;
 	
 	@Override
 	public String toString()
@@ -52,6 +53,11 @@ public abstract class SeatMap
 		return numOfFirstClass;
 	}
 	
+	public String getAircraftModel()
+	{
+		return aircraftModel;
+	}
+	
 	protected void setSeatMap(Seat[][] seatMap)
 	{
 		this.seatMap = seatMap;
@@ -75,6 +81,11 @@ public abstract class SeatMap
 	protected void setASeat(int row, int column, Seat aSeat)
 	{
 		this.seatMap[row][column] = aSeat;
+	}
+	
+	protected void setAircraftModel(String aircraftModel)
+	{
+		this.aircraftModel = aircraftModel;
 	}
 	
 	public int lastRow()
