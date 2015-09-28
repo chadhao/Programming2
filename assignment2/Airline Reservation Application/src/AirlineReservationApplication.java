@@ -1,10 +1,12 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class AirlineReservationApplication
 {
 	private static SeatMap[] seats = new SeatMap[10];
 	private static Flight[] flights = new Flight[10];
 	private static Random rand = new Random();
+	private static Scanner keyboard = new Scanner(System.in);
 	
 	static
 	{
@@ -26,9 +28,9 @@ public class AirlineReservationApplication
 	
 	public static void main(String[] args)
 	{
-		for (int i = 0; i < 10; i++)
+		while(true)
 		{
-			System.out.println(flights[i]);
+			System.out.println("Welcome to Airline Reservation System!");
 		}
 	}
 	
@@ -37,7 +39,6 @@ public class AirlineReservationApplication
 		Random rand = new Random();
 		for (int i = 0; i < 50; i++)
 		{
-			
 			seats.getSeat(rand.nextInt(seats.getNumOfRows())+1, (char)(Character.valueOf('A')+rand.nextInt(seats.getNumOfColumns()))).reserveSeat();
 		}
 	}
