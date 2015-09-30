@@ -6,7 +6,7 @@ public abstract class Airline
 	@Override
 	public String toString()
 	{
-		return name + " airline";
+		return name + " Airline";
 	}
 	
 	public String getName()
