@@ -1,5 +1,5 @@
 /**
- * This class is an enum class which stores different seat types of a flight.
+ * This is an enum class which stores different seat types of a flight.
  * 
  * @author      Duan Hao
  */
