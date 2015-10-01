@@ -36,7 +36,7 @@ public class AirlineReservationApplication
 			int selectedFlight;
 			Airline selectedAirline;
 			boolean isFirstClass = false;
-			boolean bookAnother = false;
+			boolean bookAnother = true;
 			SeatType selectedType;
 			Seat bookedSeat = null;
 			
@@ -147,12 +147,12 @@ public class AirlineReservationApplication
 			}
 			catch (AirlineReservationException are)
 			{
-				System.out.println("\nInvalid input!\nPlease try again.\n");
+				System.out.println("\nInvalid input!\nPlease try again.\nReturning to main menu...\n");
 				continue;
 			}
 			catch (InputMismatchException ime)
 			{
-				System.out.println("\nInput type mismatch!\nPlease try again.\n");
+				System.out.println("\nInput type mismatch!\nPlease try again.\nReturning to main menu...\n");
 				keyboard.next();
 				continue;
 			}
