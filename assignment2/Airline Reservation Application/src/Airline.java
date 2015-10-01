@@ -8,12 +8,7 @@ public abstract class Airline
 	{
 		return name + " Airline";
 	}
-	
-	public String getName()
-	{
-		return name;
-	}
-	
+
 	protected void setName(String name)
 	{
 		this.name = name;
