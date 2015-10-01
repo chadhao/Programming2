@@ -216,15 +216,4 @@ public class AirlineReservationApplication
 			seats.getSeat(rand.nextInt(seats.getNumOfRows())+1, (char)(Character.valueOf('A')+rand.nextInt(seats.getNumOfColumns()))).reserveSeat();
 		}
 	}
-	
-//	public static void fillFirstClass(SeatMap seats)
-//	{
-//		for (int i = 0; i < seats.getNumOfFirstClass(); i++)
-//		{
-//			for (int j = 0; j < seats.getNumOfColumns(); j++)
-//			{
-//				seats.getSeat(i+1, (char)(Character.valueOf('A')+j)).reserveSeat();
-//			}
-//		}
-//	}
 }
