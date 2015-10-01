@@ -1,4 +1,8 @@
-
+/**
+ * This class is used as a super class which defined two abstract method for sub classes to reserve first class and economy seats.
+ * 
+ * @author      Duan Hao
+ */
 public abstract class Airline
 {
 	private String name;
@@ -8,7 +12,12 @@ public abstract class Airline
 	{
 		return name + " Airline";
 	}
-
+	
+	/**
+	 * Set name of an airline.
+	 *
+	 * @param  name  name of the airline
+	 */
 	protected void setName(String name)
 	{
 		this.name = name;

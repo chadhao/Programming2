@@ -1,4 +1,9 @@
-
+/**
+ * This class is extended from abstract class Airline.
+ * This class implemented methods to reserve first and economy class seats based on given criteria.
+ * 
+ * @author      Duan Hao
+ */
 public class RynoAir extends Airline
 {
 	public RynoAir()
