@@ -1,4 +1,8 @@
-
+/**
+ * This class is an enum class which stores different seat types of a flight.
+ * 
+ * @author      Duan Hao
+ */
 public enum SeatType
 {
 	A("AISLE"), M("MIDDLE"), W("WINDOW");

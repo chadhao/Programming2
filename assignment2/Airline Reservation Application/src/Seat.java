@@ -40,11 +40,6 @@ public class Seat
 		return isReserved;
 	}
 	
-	public boolean isFirstClass()
-	{
-		return isFirstClass;
-	}
-	
 	public void reserveSeat()
 	{
 		this.isReserved = true;
