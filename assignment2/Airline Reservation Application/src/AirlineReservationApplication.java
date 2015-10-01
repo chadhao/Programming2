@@ -4,28 +4,26 @@ public class AirlineReservationApplication
 {
 	private static Random rand = new Random();
 	private static Scanner keyboard = new Scanner(System.in);
-	private static SeatMap[] seats = new SeatMap[10];
 	private static Flight[] flights = new Flight[10];
 	private static ArrayList<String> cityArray = new ArrayList<>();
 	private static ArrayList<Flight> flightArray = new ArrayList<>();
 	
 	static
 	{
+		flights[0] = new Flight("CI51", "BEIJING", "AUCKLAND", "11:40", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[1] = new Flight("EK407", "AUCKLAND", "DUBAI", "18:30", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[2] = new Flight("CA975", "BEIJING", "SINGAPORE", "00:05", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[3] = new Flight("CA942", "HONGKONG", "BEIJING", "12:10", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[4] = new Flight("SQ878", "HONGKONG", "TAIPEI", "11:55", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[5] = new Flight("AF5202", "AUCKLAND", "SHANGHAI", "20:20", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[6] = new Flight("KA831", "BEIJING", "HONGKONG", "08:40", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[7] = new Flight("CX846", "HONGKONG", "NEWYORK", "18:45", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[8] = new Flight("BA180", "AUCKLAND", "LONGDON", "07:15", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
+		flights[9] = new Flight("VS250", "BEIJING", "SHANGHAI", "15:15", (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap());
 		for (int i = 0; i < 10; i++)
 		{
-			seats[i] = (rand.nextInt(2) == 0)?new BoeingSeatMap():new AirBusSeatMap();
-			randomFillSeats(seats[i]);
+			randomFillSeats(flights[i].getSeats());
 		}
-		flights[0] = new Flight("CI51", "BEIJING", "AUCKLAND", "11:40", seats[0]);
-		flights[1] = new Flight("EK407", "AUCKLAND", "DUBAI", "18:30", seats[1]);
-		flights[2] = new Flight("CA975", "BEIJING", "SINGAPORE", "00:05", seats[2]);
-		flights[3] = new Flight("CA942", "HONGKONG", "BEIJING", "12:10", seats[3]);
-		flights[4] = new Flight("SQ878", "HONGKONG", "TAIPEI", "11:55", seats[4]);
-		flights[5] = new Flight("AF5202", "AUCKLAND", "SHANGHAI", "20:20", seats[5]);
-		flights[6] = new Flight("KA831", "BEIJING", "HONGKONG", "08:40", seats[6]);
-		flights[7] = new Flight("CX846", "HONGKONG", "NEWYORK", "18:45", seats[7]);
-		flights[8] = new Flight("BA180", "AUCKLAND", "LONGDON", "07:15", seats[8]);
-		flights[9] = new Flight("VS250", "BEIJING", "SHANGHAI", "15:15", seats[9]);
 	}
 	
 	public static void main(String[] args) throws AirlineReservationException
