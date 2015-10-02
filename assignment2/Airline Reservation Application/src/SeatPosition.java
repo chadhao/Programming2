@@ -1,4 +1,10 @@
 
+/**
+ * This class defines position of a seat in seatmap.
+ * 
+ * @author Duan Hao
+ *
+ */
 public class SeatPosition
 {
 	private int row;
@@ -16,11 +22,17 @@ public class SeatPosition
 		return Integer.toString(row)+column;
 	}
 	
+	/**
+	 * @return row of a seat
+	 */
 	public int getRow()
 	{
 		return row;
 	}
 	
+	/**
+	 * @return column of a seat
+	 */
 	public char getColumn()
 	{
 		return column;

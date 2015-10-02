@@ -23,7 +23,21 @@ public abstract class Airline
 		this.name = name;
 	}
 	
+	/**
+	 * This abstract method is used for reserving First Class seats.
+	 * 
+	 * @param aFlight a Flight object to search from
+	 * @param seatType type of seat that user wanted to book
+	 * @return a Seat object or null
+	 */
 	protected abstract Seat reserveFirstClass(Flight aFlight, SeatType seatType);
 	
+	/**
+	 * This abstract method is used for reserving Economy seats.
+	 * 
+	 * @param aFlight a Flight object to search from
+	 * @param seatType type of seat that user wanted to book
+	 * @return a Seat object or null
+	 */
 	protected abstract Seat reserveEconomy(Flight aFlight, SeatType seatType);
 }

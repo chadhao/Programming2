@@ -1,5 +1,12 @@
 import java.util.*;
 
+/**
+ * This class contains the entrance of this program.
+ * This class also provides some interaction method used in main method.
+ * 
+ * @author Duan Hao
+ *
+ */
 public class AirlineReservationApplication
 {
 	private static Random rand = new Random();
@@ -26,6 +33,10 @@ public class AirlineReservationApplication
 		}
 	}
 	
+	/**
+	 * @param args arguments passed in when executing this program
+	 * @throws AirlineReservationException throws exception when user input is invalid
+	 */
 	public static void main(String[] args) throws AirlineReservationException
 	{
 		while (true)
@@ -159,6 +170,11 @@ public class AirlineReservationApplication
 		}
 	}
 	
+	/**
+	 * This method prints all flights starting from the given city.
+	 * 
+	 * @param city a String of a city name
+	 */
 	public static void printFlights(String city)
 	{
 		if (!flightArray.isEmpty())
@@ -183,6 +199,9 @@ public class AirlineReservationApplication
 		}
 	}
 	
+	/**
+	 * This method prints all cities which has at least one departure flight
+	 */
 	public static void printCities()
 	{
 		if (!cityArray.isEmpty())
@@ -208,6 +227,11 @@ public class AirlineReservationApplication
 		System.out.println();
 	}
 	
+	/**
+	 * This method is to reserved some seats in a seatmap randomly for testing purpose
+	 * 
+	 * @param seats a SeatMap object
+	 */
 	public static void randomFillSeats(SeatMap seats)
 	{
 		Random rand = new Random();

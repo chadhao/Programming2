@@ -1,4 +1,10 @@
 
+/**
+ * This class represents an Airbus airplane seatmap
+ * 
+ * @author Duan Hao
+ *
+ */
 public class AirBusSeatMap extends SeatMap
 {
 	public AirBusSeatMap()
@@ -10,7 +16,10 @@ public class AirBusSeatMap extends SeatMap
 		setSeatMap(new Seat[12][9]);
 		initialiseSeatMap();
 	}
-
+	
+	/**
+	 * @see SeatMap#initialiseSeatMap()
+	 */
 	protected void initialiseSeatMap()
 	{
 		for (int i = 0; i < getNumOfRows(); i++)

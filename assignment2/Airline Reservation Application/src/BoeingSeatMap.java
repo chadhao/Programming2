@@ -1,4 +1,10 @@
 
+/**
+ * This class represents an Boeing airplane seatmap
+ * 
+ * @author Duan Hao
+ *
+ */
 public class BoeingSeatMap extends SeatMap
 {
 	public BoeingSeatMap()
@@ -11,6 +17,9 @@ public class BoeingSeatMap extends SeatMap
 		initialiseSeatMap();
 	}
 	
+	/**
+	 * @see SeatMap#initialiseSeatMap()
+	 */
 	protected void initialiseSeatMap()
 	{
 		for (int i = 0; i < getNumOfRows(); i++)
