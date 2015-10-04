@@ -1,7 +1,7 @@
 
 public class Exercise1
 {
-	static boolean CAUSE_EXCEPTION = false;
+	static boolean CAUSE_EXCEPTION = true;
 	
 	public static void main(String[] args)
 	{
