@@ -28,5 +28,11 @@ public class Box<T> {
 		Box<Integer> a = new Box<Integer>(2);
 		Box<Integer> b = new Box<Integer>(4);
 		System.out.println(a.getContents()+b.getContents());
+		Box<Double> c = new Box<Double>(1.5);
+		Box<String> d = new Box<String>("This is a String Box!");
+		Box<Box<Integer>> e = new Box<Box<Integer>>(a);
+		System.out.println(c);
+		System.out.println(d);
+		System.out.println(e);
 	}
 }
