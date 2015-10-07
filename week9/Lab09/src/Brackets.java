@@ -46,7 +46,7 @@ public class Brackets
 	public static void main(String[] args)
 	{
 		Brackets brackets = new Brackets();
-		String str1 = "(())[([])]";
+		String str1 = "{()}[([])]";
 		System.out.println("\"" + str1 + "\" is" + (brackets.isBalanced(str1)?" ": " not ") + "balanced.");
 		String str2 = "[([(])]";
 		System.out.println("\"" + str2 + "\" is" + (brackets.isBalanced(str2)?" ": " not ") + "balanced.");
