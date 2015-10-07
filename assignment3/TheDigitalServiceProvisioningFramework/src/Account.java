@@ -15,7 +15,7 @@ public class Account implements Comparable<Account>
 	@Override
 	public String toString()
 	{
-		return "Account [ID:" + ID + ", Name:" + name + ", Contact:" + contact + "]";
+		return "Customer name: " + name + ". Account number: " + ID + "\nContact details: " + contact;
 	}
 	
 	@Override
