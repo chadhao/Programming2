@@ -3,19 +3,19 @@ public class Account implements Comparable<Account>
 {
 	private Integer ID;
 	private String name;
-	private String phone;
+	private String contact;
 	
-	public Account(Integer ID, String name, String phone)
+	public Account(Integer ID, String name, String contact)
 	{
 		this.ID = ID;
 		this.name = name;
-		this.phone = phone;
+		this.contact = contact;
 	}
 	
 	@Override
 	public String toString()
 	{
-		return "Account [ID:" + ID + ", Name:" + name + ", Phone:" + phone + "]";
+		return "Account [ID:" + ID + ", Name:" + name + ", Contact:" + contact + "]";
 	}
 	
 	@Override
@@ -34,9 +34,9 @@ public class Account implements Comparable<Account>
 		return name;
 	}
 
-	public String getPhone()
+	public String getContact()
 	{
-		return phone;
+		return contact;
 	}
 	
 	
