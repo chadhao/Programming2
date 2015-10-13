@@ -22,6 +22,7 @@ public class BinaryTree<T extends Comparable<T>>
 		{
 			return this;
 		}
+		
 		if (element.compareTo(this.data) < 0)
 		{
 			if (this.left == null)
@@ -31,11 +32,41 @@ public class BinaryTree<T extends Comparable<T>>
 			}
 			return this.left.insert(element);
 		}
+		
 		if (this.right == null)
 		{
 			this.right = new BinaryTree<T>(element);
 			return this.right;
 		}
 		return this.right.insert(element);
+	}
+	
+	public BinaryTree<T> search(T element)
+	{
+		if (element.compareTo(this.data) == 0)
+		{
+			return this;
+		}
+		
+		if (element.compareTo(this.data) < 0)
+		{
+			if (this.left == null)
+			{
+				return null;
+			}
+			else
+			{
+				return this.left.search(element);
+			}
+		}
+		
+		if (this.right == null)
+		{
+			return null;
+		}
+		else
+		{
+			return this.right.search(element);
+		}
 	}
 }
