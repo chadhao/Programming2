@@ -77,7 +77,12 @@ public class BinaryTree<T extends Comparable<T>>
 		Iterator<T> it = array.iterator();
 		while (it.hasNext())
 		{
-			insert(it.next());
+			T element = it.next();
+			if (search(element) != null)
+			{
+				continue;
+			}
+			insert(element);
 		}
 	}
 }
