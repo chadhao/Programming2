@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class BinaryTree<T extends Comparable<T>>
 {
@@ -67,6 +69,15 @@ public class BinaryTree<T extends Comparable<T>>
 		else
 		{
 			return this.right.search(element);
+		}
+	}
+	
+	public void insertAll(ArrayList<T> array)
+	{
+		Iterator<T> it = array.iterator();
+		while (it.hasNext())
+		{
+			insert(it.next());
 		}
 	}
 }
