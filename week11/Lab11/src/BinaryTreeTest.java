@@ -8,6 +8,10 @@ public class BinaryTreeTest
 		aTree.insert(3);
 		aTree.insert(6);
 		aTree.insert(2);
+		
+		BinaryTree<String> nameTree = new BinaryTree<String>("Bob");
+		nameTree.insert("Alice");
+		nameTree.insert("Carl");
 	}
 
 }
