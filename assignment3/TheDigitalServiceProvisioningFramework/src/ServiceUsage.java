@@ -4,11 +4,19 @@ public abstract class ServiceUsage implements Comparable<ServiceUsage>
 {
 	private String serviceName;
 	private ArrayList<Product> products;
+	private Bill usageBill;
 	
-	public ServiceUsage(String serviceName)
+	public ServiceUsage(String serviceName, ArrayList<Product> products)
 	{
 		this.serviceName = serviceName;
-		this.products = new ArrayList<>();
+		this.products = products;
+		this.usageBill = null;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return serviceName + " USAGE:\n" + usageBill;
 	}
 	
 	@Override
@@ -22,40 +30,13 @@ public abstract class ServiceUsage implements Comparable<ServiceUsage>
 		return serviceName;
 	}
 	
-	protected void addProduct(String pName, double pPrice)
+	public ArrayList<Product> getProducts()
 	{
-		products.add(new Product(pName, pPrice));
+		return products;
 	}
 	
-	public int getProductSize()
+	protected void setUsageBill(Bill usageBill)
 	{
-		return products.size();
-	}
-	
-	public Product getProduct(int index)
-	{
-		return products.get(index);
-	}
-	
-	protected class Product
-	{
-		private String pName;
-		private double pPrice;
-		
-		public Product(String pName, double pPrice)
-		{
-			this.pName = pName;
-			this.pPrice = pPrice;
-		}
-		
-		public String getpName()
-		{
-			return pName;
-		}
-		
-		public double getpPrice()
-		{
-			return pPrice;
-		}
+		this.usageBill = usageBill;
 	}
 }
