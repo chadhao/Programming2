@@ -10,6 +10,16 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		serviceMap = new HashMap<>();
 	}
 	
+	public ArrayList<Account> getKeySet()
+	{
+		return new ArrayList<>(serviceMap.keySet());
+	}
+	
+	public ServiceUsage getService(Account account)
+	{
+		return serviceMap.get(account);
+	}
+	
 	@Override
 	public Bill calculateBill(Account anAccount, ServiceUsage serviceUsage)
 	{
@@ -97,7 +107,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 			@Override
 			public int compare(Entry<Account, ServiceUsage> o1, Entry<Account, ServiceUsage> o2)
 			{
-				return o2.getValue().compareTo(o1.getValue());
+				return o2.getValue().getUsageBill().compareTo(o1.getValue().getUsageBill());
 			}
 		};
 	}
@@ -108,17 +118,18 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		{
 			throw new NoSubscriptionException(null);
 		}
-		String transcript = "<Customer Transcripts>\n\n";
+		
 		ArrayList<Entry<Account, ServiceUsage>> entryList = new ArrayList<>(serviceMap.entrySet());
 		if(byName)
 		{
-			Collections.sort(entryList, compareByName());
+			Collections.sort(entryList, compareByName().reversed());
 		}
 		else
 		{
 			Collections.sort(entryList, compareByUsage());
 		}
 		
+		String transcript = "<Customer Transcripts>\n\n";
 		Iterator<Entry<Account, ServiceUsage>> it = entryList.iterator();
 		while (it.hasNext())
 		{
