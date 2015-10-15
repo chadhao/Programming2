@@ -15,7 +15,7 @@ public class Bill implements Comparable<Bill>
 	@Override
 	public String toString()
 	{
-		return chargeDescription + "TOTAL Amount owing: $" + totalAmount + ".";
+		return account + chargeDescription + "TOTAL Amount owing: $" + totalAmount + ".";
 	}
 	
 	@Override

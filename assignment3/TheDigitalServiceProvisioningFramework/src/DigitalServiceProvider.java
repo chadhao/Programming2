@@ -25,6 +25,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 			Product nextProduct = it.next();
 			chargeDescription += counter + ") $" + (nextProduct.getpAmount()*nextProduct.getpPrice()) +
 					" (" + nextProduct.getpAmount() + " " + nextProduct.getpName() + "@ $" + nextProduct.getpPrice() + " each)\n";
+			totalAmount += nextProduct.getpAmount()*nextProduct.getpPrice();
 			counter++;
 		}
 		return new Bill(anAccount, chargeDescription, totalAmount);
@@ -41,6 +42,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		{
 			throw new CustomerAlreadyExistsException(account);
 		}
+		serviceUsage.setUsageBill(calculateBill(account, serviceUsage));
 		serviceMap.put(account, serviceUsage);
 	}
 	
@@ -79,6 +81,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 				throw new SameServiceException(account);
 			}
 		}
+		serviceUsage.setUsageBill(calculateBill(account, serviceUsage));
 		serviceMap.replace(account, serviceUsage);
 	}
 	
