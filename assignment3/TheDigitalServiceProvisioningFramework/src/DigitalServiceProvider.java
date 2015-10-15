@@ -13,7 +13,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 	@Override
 	public Bill calculateBill(Account anAccount, ServiceUsage serviceUsage)
 	{
-		String chargeDescription = serviceUsage + "USAGE:\n";
+		String chargeDescription = serviceUsage + " USAGE:\n";
 		double totalAmount = 0;
 		int counter = 1;
 		ArrayList<Product> products = serviceUsage.getProducts();
@@ -22,7 +22,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		{
 			Product nextProduct = it.next();
 			chargeDescription += counter + ") $" + (nextProduct.getpAmount()*nextProduct.getpPrice()) +
-					" (" + nextProduct.getpAmount() + " " + nextProduct.getpName() + "@ $" + nextProduct.getpPrice() + " each)\n";
+					" (" + nextProduct.getpAmount() + " " + nextProduct.getpName() + " @ $" + nextProduct.getpPrice() + " each)\n";
 			totalAmount += nextProduct.getpAmount()*nextProduct.getpPrice();
 			counter++;
 		}

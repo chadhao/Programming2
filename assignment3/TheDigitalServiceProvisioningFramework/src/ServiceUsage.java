@@ -8,7 +8,7 @@ public abstract class ServiceUsage implements Comparable<ServiceUsage>
 	
 	public ServiceUsage(String serviceName, ArrayList<Product> products)
 	{
-		this.serviceName = serviceName;
+		this.serviceName = serviceName.toUpperCase();
 		this.products = products;
 		this.usageBill = null;
 	}
@@ -43,5 +43,10 @@ public abstract class ServiceUsage implements Comparable<ServiceUsage>
 	public void setUsageBill(Bill usageBill)
 	{
 		this.usageBill = usageBill;
+	}
+	
+	public void setProductAmount(int index, int amount)
+	{
+		products.get(index).setpAmount(amount);
 	}
 }
