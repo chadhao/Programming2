@@ -22,7 +22,7 @@ public abstract class ServiceUsage implements Comparable<ServiceUsage>
 	@Override
 	public int compareTo(ServiceUsage o)
 	{
-		return this.serviceName.compareTo(o.serviceName);
+		return this.usageBill.compareTo(o.usageBill);
 	}
 	
 	public String getServiceName()

@@ -101,7 +101,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 			@Override
 			public int compare(Entry<Account, ServiceUsage> o1, Entry<Account, ServiceUsage> o2)
 			{
-				return o2.getValue().getUsageBill().compareTo(o1.getValue().getUsageBill());
+				return o2.getValue().compareTo(o1.getValue());
 			}
 		};
 	}
