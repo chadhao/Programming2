@@ -94,7 +94,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		{
 			throw new NoSubscriptionException(null);
 		}
-		String transcript = "";
+		String transcript = "<Customer Transcripts>\n\n";
 		ArrayList<Entry<Account, ServiceUsage>> entryList = new ArrayList<>(serviceMap.entrySet());
 		if(byName)
 		{
@@ -104,6 +104,23 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		{
 			Collections.sort(entryList, compareByUsage());
 		}
+		
+		Iterator<Entry<Account, ServiceUsage>> it = entryList.iterator();
+		while (it.hasNext())
+		{
+			Entry<Account, ServiceUsage> nextEntry = it.next();
+			transcript += "Name: " + nextEntry.getKey().getName() + "\n";
+			int counter = 1;
+			for (Product p : nextEntry.getValue().getProducts())
+			{
+				transcript += counter + ") $" + (p.getpPrice()*p.getpAmount()) +
+						" (" + p.getpAmount() + " " + p.getpName() + " @ $" + p.getpPrice() + " each)\n";
+				counter++;
+			}
+			transcript += "\n";
+		}
+		transcript += "Total number of customers: " + entryList.size() + "\n";
+		
 		return transcript;
 	}
 }
