@@ -16,7 +16,7 @@ public abstract class ServiceUsage implements Comparable<ServiceUsage>
 	@Override
 	public String toString()
 	{
-		return serviceName + " USAGE:\n" + usageBill;
+		return serviceName;
 	}
 	
 	@Override

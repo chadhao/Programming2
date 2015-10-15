@@ -15,7 +15,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 	@Override
 	public Bill calculateBill(Account anAccount, ServiceUsage serviceUsage)
 	{
-		String chargeDescription = "";
+		String chargeDescription = serviceUsage + "USAGE:\n";
 		double totalAmount = 0;
 		int counter = 1;
 		ArrayList<Product> products = serviceUsage.getProducts();
