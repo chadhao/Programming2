@@ -39,7 +39,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		return new Bill(anAccount, chargeDescription, totalAmount);
 	}
 	
-	protected void subscribe(Account account, ServiceUsage serviceUsage) throws CustomerAlreadyExistsException
+	public void subscribe(Account account, ServiceUsage serviceUsage) throws CustomerAlreadyExistsException
 	{
 		if (serviceMap.containsKey(account))
 		{
@@ -49,7 +49,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		serviceMap.put(account, serviceUsage);
 	}
 	
-	protected void unsubscribe(Account account) throws CustomerDoesNotExistException
+	public void unsubscribe(Account account) throws CustomerDoesNotExistException
 	{
 		if (!serviceMap.containsKey(account))
 		{
@@ -58,7 +58,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		serviceMap.remove(account);
 	}
 	
-	protected ServiceUsage getUsage(Account account) throws CustomerDoesNotExistException
+	public ServiceUsage getUsage(Account account) throws CustomerDoesNotExistException
 	{
 		if (!serviceMap.containsKey(account))
 		{
@@ -67,7 +67,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		return serviceMap.get(account);
 	}
 	
-	protected void updateUsage(Account account, ServiceUsage serviceUsage) throws CustomerDoesNotExistException, SameServiceException
+	public void updateUsage(Account account, ServiceUsage serviceUsage) throws CustomerDoesNotExistException, SameServiceException
 	{
 		if (!serviceMap.containsKey(account))
 		{
@@ -126,6 +126,12 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		}
 		else
 		{
+//			Iterator<Entry<Account, ServiceUsage>> entryIt = entryList.iterator();
+//			while (entryIt.hasNext())
+//			{
+//				Entry<Account, ServiceUsage> nextEntry = entryIt.next();
+//				serviceMap.get(nextEntry.getKey()).setUsageBill(calculateBill(nextEntry.getKey(), nextEntry.getValue()));
+//			}
 			Collections.sort(entryList, compareByUsage());
 		}
 		

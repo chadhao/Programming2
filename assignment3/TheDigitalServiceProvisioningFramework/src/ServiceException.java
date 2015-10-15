@@ -13,4 +13,9 @@ public class ServiceException extends Exception
 		this.errTime = new Date(System.currentTimeMillis());
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "\n<Error Message>\nError time: " + errTime + "\nError account: " + errAccount + "\nError Description: " + errDescription;
+	}
 }
