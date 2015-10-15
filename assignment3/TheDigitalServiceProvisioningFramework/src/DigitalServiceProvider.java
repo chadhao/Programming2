@@ -12,6 +12,24 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		serviceMap = new HashMap<>();
 	}
 	
+	@Override
+	public Bill calculateBill(Account anAccount, ServiceUsage serviceUsage)
+	{
+		String chargeDescription = "";
+		double totalAmount = 0;
+		int counter = 1;
+		ArrayList<Product> products = serviceUsage.getProducts();
+		Iterator<Product> it = products.iterator();
+		while (it.hasNext())
+		{
+			Product nextProduct = it.next();
+			chargeDescription += counter + ") $" + (nextProduct.getpAmount()*nextProduct.getpPrice()) +
+					" (" + nextProduct.getpAmount() + " " + nextProduct.getpName() + "@ $" + nextProduct.getpPrice() + " each)\n";
+			counter++;
+		}
+		return new Bill(anAccount, chargeDescription, totalAmount);
+	}
+	
 	public String getProviderName()
 	{
 		return providerName;
