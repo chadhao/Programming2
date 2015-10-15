@@ -1,9 +1,9 @@
 
-public class Bill
+public class Bill implements Comparable<Bill>
 {
 	private Account account;
 	private String chargeDescription;
-	private double totalAmount;
+	private Double totalAmount;
 	
 	public Bill(Account account, String chargeDescription, double totalAmount)
 	{
@@ -16,5 +16,11 @@ public class Bill
 	public String toString()
 	{
 		return account + chargeDescription + "TOTAL Amount owing: $" + totalAmount + ".";
+	}
+	
+	@Override
+	public int compareTo(Bill o)
+	{
+		return this.totalAmount.compareTo(o.totalAmount);
 	}
 }

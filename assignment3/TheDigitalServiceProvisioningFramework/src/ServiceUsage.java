@@ -35,6 +35,11 @@ public abstract class ServiceUsage implements Comparable<ServiceUsage>
 		return products;
 	}
 	
+	public Bill getUsageBill()
+	{
+		return usageBill;
+	}
+	
 	protected void setUsageBill(Bill usageBill)
 	{
 		this.usageBill = usageBill;

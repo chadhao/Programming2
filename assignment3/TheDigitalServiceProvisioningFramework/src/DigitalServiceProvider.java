@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Map.Entry;
 
 public abstract class DigitalServiceProvider implements PaymentSystem
 {
@@ -63,6 +64,30 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		serviceMap.replace(account, serviceUsage);
 	}
 	
+	private static Comparator<Entry<Account, ServiceUsage>> compareByName()
+	{
+		return new Comparator<Map.Entry<Account,ServiceUsage>>()
+		{
+			@Override
+			public int compare(Entry<Account, ServiceUsage> o1, Entry<Account, ServiceUsage> o2)
+			{
+				return o2.getKey().compareTo(o1.getKey());
+			}
+		};
+	}
+	
+	private static Comparator<Entry<Account, ServiceUsage>> compareByUsage()
+	{
+		return new Comparator<Map.Entry<Account,ServiceUsage>>()
+		{
+			@Override
+			public int compare(Entry<Account, ServiceUsage> o1, Entry<Account, ServiceUsage> o2)
+			{
+				return o2.getValue().getUsageBill().compareTo(o1.getValue().getUsageBill());
+			}
+		};
+	}
+	
 	public String customerTranscript(boolean byName) throws NoSubscriptionException
 	{
 		if (serviceMap.isEmpty())
@@ -70,9 +95,14 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 			throw new NoSubscriptionException(null);
 		}
 		String transcript = "";
+		ArrayList<Entry<Account, ServiceUsage>> entryList = new ArrayList<>(serviceMap.entrySet());
 		if(byName)
 		{
-			
+			Collections.sort(entryList, compareByName());
+		}
+		else
+		{
+			Collections.sort(entryList, compareByUsage());
 		}
 		return transcript;
 	}
