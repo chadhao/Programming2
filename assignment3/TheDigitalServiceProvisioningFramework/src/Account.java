@@ -4,12 +4,13 @@ public class Account implements Comparable<Account>
 	private Integer ID;
 	private String name;
 	private String contact;
+	private static int nowID = 0;
 	
-	public Account(Integer ID, String name, String contact)
+	public Account(String name, String contact)
 	{
-		this.ID = ID;
-		this.name = name;
-		this.contact = contact;
+		this.ID = nextID();
+		this.name = name.toUpperCase();
+		this.contact = contact.toUpperCase();
 	}
 	
 	@Override
@@ -24,6 +25,11 @@ public class Account implements Comparable<Account>
 		return this.name.compareTo(o.name);
 	}
 
+	private int nextID()
+	{
+		return ++nowID;
+	}
+	
 	public Integer getID()
 	{
 		return ID;
