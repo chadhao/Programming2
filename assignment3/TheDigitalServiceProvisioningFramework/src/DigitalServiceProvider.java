@@ -3,12 +3,10 @@ import java.util.Map.Entry;
 
 public abstract class DigitalServiceProvider implements PaymentSystem
 {
-	private String providerName;
 	private HashMap<Account, ServiceUsage> serviceMap;
 	
-	public DigitalServiceProvider(String providerName)
+	public DigitalServiceProvider()
 	{
-		this.providerName = providerName;
 		serviceMap = new HashMap<>();
 	}
 	
@@ -29,11 +27,6 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 			counter++;
 		}
 		return new Bill(anAccount, chargeDescription, totalAmount);
-	}
-	
-	public String getProviderName()
-	{
-		return providerName;
 	}
 	
 	protected void subscribe(Account account, ServiceUsage serviceUsage) throws CustomerAlreadyExistsException
