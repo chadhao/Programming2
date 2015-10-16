@@ -58,7 +58,7 @@ public class DigitalServiceProviderSelectionApp
 				}
 				if (providerSelected == 0)
 				{
-					System.out.println("Thans for using! Bye!");
+					System.out.println("Thanks for using! Bye!");
 					break;
 				}
 			}
