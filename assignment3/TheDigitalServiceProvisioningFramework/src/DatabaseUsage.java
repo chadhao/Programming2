@@ -1,7 +1,14 @@
 import java.util.ArrayList;
 
+/**
+ * The Class DatabaseUsage.
+ */
 public class DatabaseUsage extends ServiceUsage
 {
+	
+	/**
+	 * Instantiates a new database usage.
+	 */
 	public DatabaseUsage()
 	{
 		super("Database Service");

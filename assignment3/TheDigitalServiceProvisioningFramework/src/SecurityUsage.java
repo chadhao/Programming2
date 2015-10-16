@@ -1,7 +1,14 @@
 import java.util.ArrayList;
 
+/**
+ * The Class SecurityUsage.
+ */
 public class SecurityUsage extends ServiceUsage
 {
+	
+	/**
+	 * Instantiates a new security usage.
+	 */
 	public SecurityUsage()
 	{
 		super("Security Service");

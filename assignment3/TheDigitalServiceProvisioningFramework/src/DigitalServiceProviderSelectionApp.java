@@ -1,9 +1,15 @@
 import java.util.*;
 
+/**
+ * The Class DigitalServiceProviderSelectionApp.
+ */
 public class DigitalServiceProviderSelectionApp
 {
+	
+	/** The providers. */
 	private static ArrayList<DigitalServiceProvider> providers;
-	private static HashSet<Account> accounts;
+	
+	/** The keyboard. */
 	private static Scanner keyboard;
 	
 	static
@@ -16,6 +22,12 @@ public class DigitalServiceProviderSelectionApp
 		providers.add(new SecurityProvider());
 	}
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws MenuItemDoesNotExistException the menu item does not exist exception
+	 */
 	public static void main(String[] args) throws MenuItemDoesNotExistException
 	{
 		System.out.println("Welcome to Digital Service Provider Selection App!");
@@ -25,6 +37,7 @@ public class DigitalServiceProviderSelectionApp
 			int providerSelected = 0;
 			int providerServiceSelected = 0;
 			int transcriptByName = 0;
+			int accountService = 0;
 			Account account;
 			ServiceUsage service;
 			
@@ -134,7 +147,7 @@ public class DigitalServiceProviderSelectionApp
 					{
 						throw new MenuItemDoesNotExistException();
 					}
-					providers.get(providerSelected-1).customerTranscript(transcriptByName==1?true:false);
+					System.out.println(providers.get(providerSelected-1).customerTranscript(transcriptByName==1?true:false));
 				}
 				catch (InputMismatchException ime)
 				{
@@ -157,16 +170,100 @@ public class DigitalServiceProviderSelectionApp
 			}
 			else
 			{
-				account = selectExistingAccount();
+				account = selectExistingAccount(providers.get(providerSelected-1));
+				if (account == null)
+				{
+					System.out.println("\n<Error Message>\nThere is no customer record! Going back to main menu...");
+					continue;
+				}
+				System.out.println("\n<Account Services>");
+				System.out.println("1. Service usage info");
+				System.out.println("2. Unsubscribe service");
+				System.out.println("3. Update subscription");
+				System.out.print("Please select from menu: ");
+				try
+				{
+					accountService = keyboard.nextInt();
+					if (accountService < 1 || accountService > 3)
+					{
+						throw new MenuItemDoesNotExistException();
+					}
+					if (accountService == 1)
+					{
+						System.out.println("\n\n<Service Usage Info>");
+						System.out.println(providers.get(providerSelected-1).getUsage(account).getUsageBill());
+						continue;
+					}
+					else if (accountService == 2)
+					{
+						providers.get(providerSelected-1).unsubscribe(account);
+						System.out.println("You successfully unsubscribed this service!");
+						continue;
+					}
+					else
+					{
+						System.out.println("\n\n<Usage Now>");
+						System.out.println(providers.get(providerSelected-1).getUsage(account).getUsageBill().getChargeDescription());
+						if (providers.get(providerSelected-1).getUsage(account) instanceof CloudUsage)
+						{
+							service = new CloudUsage();
+						}
+						else if (providers.get(providerSelected-1).getUsage(account) instanceof DatabaseUsage)
+						{
+							service = new DatabaseUsage();
+						}
+						else if (providers.get(providerSelected-1).getUsage(account) instanceof EmailUsage)
+						{
+							service = new EmailUsage();
+						}
+						else
+						{
+							service = new SecurityUsage();
+						}
+						setProductsAmount(service.getProducts());
+						providers.get(providerSelected-1).updateUsage(account, service);
+						System.out.println("You successfully updated " + providers.get(providerSelected-1).getUsage(account) + " @ " + providers.get(providerSelected-1) + "!");
+					}
+				}
+				catch (InputMismatchException ime)
+				{
+					System.out.println("\n<Error Message>\nInvalid input! Going back to main menu...");
+					keyboard.next();
+					continue;
+				}
+				catch (MenuItemDoesNotExistException midnee)
+				{
+					System.out.println(midnee);
+					System.out.println("Going back to main menu...");
+					continue;
+				}
+				catch (CustomerDoesNotExistException cdnee)
+				{
+					System.out.println(cdnee);
+					System.out.println("Going back to main menu...");
+					continue;
+				}
+				catch (SameServiceException sse)
+				{
+					System.out.println(sse);
+					System.out.println("Going back to main menu...");
+					continue;
+				}
 			}
 		}
 		
 	}
 	
+	/**
+	 * Creates the new account.
+	 *
+	 * @return the account
+	 */
 	public static Account createNewAccount()
 	{
 		String name;
 		String contact;
+		keyboard.nextLine();
 		System.out.println("\n<Create Account>");
 		System.out.print("Name: ");
 		name = keyboard.nextLine();
@@ -175,37 +272,36 @@ public class DigitalServiceProviderSelectionApp
 		return new Account(name, contact);
 	}
 	
-	public static void setAllAccounts()
+	/**
+	 * Select existing account.
+	 *
+	 * @param provider the provider
+	 * @return the account
+	 */
+	public static Account selectExistingAccount(DigitalServiceProvider provider)
 	{
-		Iterator<DigitalServiceProvider> it = providers.iterator();
-		while (it.hasNext())
-		{
-			accounts.addAll(it.next().getKeySet());
-		}
-	}
-	
-	public static Account selectExistingAccount()
-	{
-		setAllAccounts();
 		Account selectedAccount = null;
-		ArrayList<Account> accountList = new ArrayList<>(accounts);
 		while (true)
 		{
+			if (provider.getEntrySet().isEmpty())
+			{
+				break;
+			}
 			int menu = 0;
 			System.out.println("\n<Select Account>");
-			for (int i = 0; i < accountList.size(); i++)
+			for (int i = 0; i < provider.getEntrySet().size(); i++)
 			{
-				System.out.println((i+1) + ". [Name]" + accountList.get(i).getName() + " [Contact]" + accountList.get(i).getContact());
+				System.out.println((i+1) + ". [Name]" + provider.getEntrySet().get(i).getKey().getName() + " [Contact]" + provider.getEntrySet().get(i).getKey().getContact());
 			}
 			System.out.print("Please select from menu: ");
 			try
 			{
 				menu = keyboard.nextInt();
-				if (menu < 1 || menu > accountList.size())
+				if (menu < 1 || menu > provider.getEntrySet().size())
 				{
 					throw new MenuItemDoesNotExistException();
 				}
-				selectedAccount = accountList.get(menu-1);
+				selectedAccount = provider.getEntrySet().get(menu-1).getKey();
 			}
 			catch (InputMismatchException ime)
 			{
@@ -224,6 +320,12 @@ public class DigitalServiceProviderSelectionApp
 		return selectedAccount;
 	}
 	
+	
+	/**
+	 * Sets the products amount.
+	 *
+	 * @param products the new products amount
+	 */
 	public static void setProductsAmount(ArrayList<Product> products)
 	{
 		System.out.println("\n<Service Amount>");

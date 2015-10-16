@@ -1,25 +1,37 @@
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.Map.Entry;
 
+/**
+ * The Class DigitalServiceProvider.
+ */
 public abstract class DigitalServiceProvider implements PaymentSystem
 {
+	
+	/** The service map. */
 	private HashMap<Account, ServiceUsage> serviceMap;
 	
+	/**
+	 * Instantiates a new digital service provider.
+	 */
 	public DigitalServiceProvider()
 	{
 		serviceMap = new HashMap<>();
 	}
 	
-	public ArrayList<Account> getKeySet()
+	/**
+	 * Gets the entry set.
+	 *
+	 * @return the entry set
+	 */
+	public ArrayList<Entry<Account, ServiceUsage>> getEntrySet()
 	{
-		return new ArrayList<>(serviceMap.keySet());
+		return new ArrayList<>(serviceMap.entrySet());
 	}
 	
-	public ServiceUsage getService(Account account)
-	{
-		return serviceMap.get(account);
-	}
-	
+	/* (non-Javadoc)
+	 * @see PaymentSystem#calculateBill(Account, ServiceUsage)
+	 */
 	@Override
 	public Bill calculateBill(Account anAccount, ServiceUsage serviceUsage)
 	{
@@ -31,7 +43,8 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		while (it.hasNext())
 		{
 			Product nextProduct = it.next();
-			chargeDescription += counter + ") $" + (nextProduct.getpAmount()*nextProduct.getpPrice()) +
+			
+			chargeDescription += counter + ") $" + (new DecimalFormat("0.00").format(nextProduct.getpAmount()*nextProduct.getpPrice())) +
 					" (" + nextProduct.getpAmount() + " " + nextProduct.getpName() + " @ $" + nextProduct.getpPrice() + " each)\n";
 			totalAmount += nextProduct.getpAmount()*nextProduct.getpPrice();
 			counter++;
@@ -39,6 +52,13 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		return new Bill(anAccount, chargeDescription, totalAmount);
 	}
 	
+	/**
+	 * Subscribe.
+	 *
+	 * @param account the account
+	 * @param serviceUsage the service usage
+	 * @throws CustomerAlreadyExistsException the customer already exists exception
+	 */
 	public void subscribe(Account account, ServiceUsage serviceUsage) throws CustomerAlreadyExistsException
 	{
 		if (serviceMap.containsKey(account))
@@ -49,6 +69,12 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		serviceMap.put(account, serviceUsage);
 	}
 	
+	/**
+	 * Unsubscribe.
+	 *
+	 * @param account the account
+	 * @throws CustomerDoesNotExistException the customer does not exist exception
+	 */
 	public void unsubscribe(Account account) throws CustomerDoesNotExistException
 	{
 		if (!serviceMap.containsKey(account))
@@ -58,6 +84,13 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		serviceMap.remove(account);
 	}
 	
+	/**
+	 * Gets the usage.
+	 *
+	 * @param account the account
+	 * @return the usage
+	 * @throws CustomerDoesNotExistException the customer does not exist exception
+	 */
 	public ServiceUsage getUsage(Account account) throws CustomerDoesNotExistException
 	{
 		if (!serviceMap.containsKey(account))
@@ -67,6 +100,14 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		return serviceMap.get(account);
 	}
 	
+	/**
+	 * Update usage.
+	 *
+	 * @param account the account
+	 * @param serviceUsage the service usage
+	 * @throws CustomerDoesNotExistException the customer does not exist exception
+	 * @throws SameServiceException the same service exception
+	 */
 	public void updateUsage(Account account, ServiceUsage serviceUsage) throws CustomerDoesNotExistException, SameServiceException
 	{
 		if (!serviceMap.containsKey(account))
@@ -75,19 +116,29 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		}
 		Iterator<Product> nowIt = serviceMap.get(account).getProducts().iterator();
 		Iterator<Product> newIt = serviceUsage.getProducts().iterator();
+		int counter = 0;
 		while (nowIt.hasNext())
 		{
 			Product nowProduct = nowIt.next();
 			Product newProduct = newIt.next();
 			if (nowProduct.getpAmount() == newProduct.getpAmount())
 			{
-				throw new SameServiceException(account);
+				counter++;
 			}
+		}
+		if (counter == serviceUsage.getProducts().size())
+		{
+			throw new SameServiceException(account);
 		}
 		serviceUsage.setUsageBill(calculateBill(account, serviceUsage));
 		serviceMap.replace(account, serviceUsage);
 	}
 	
+	/**
+	 * Compare by name.
+	 *
+	 * @return the comparator
+	 */
 	private static Comparator<Entry<Account, ServiceUsage>> compareByName()
 	{
 		return new Comparator<Map.Entry<Account,ServiceUsage>>()
@@ -100,6 +151,11 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		};
 	}
 	
+	/**
+	 * Compare by usage.
+	 *
+	 * @return the comparator
+	 */
 	private static Comparator<Entry<Account, ServiceUsage>> compareByUsage()
 	{
 		return new Comparator<Map.Entry<Account,ServiceUsage>>()
@@ -112,6 +168,13 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 		};
 	}
 	
+	/**
+	 * Customer transcript.
+	 *
+	 * @param byName the by name
+	 * @return the string
+	 * @throws NoSubscriptionException the no subscription exception
+	 */
 	public String customerTranscript(boolean byName) throws NoSubscriptionException
 	{
 		if (serviceMap.isEmpty())
@@ -135,7 +198,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 			Collections.sort(entryList, compareByUsage());
 		}
 		
-		String transcript = "<Customer Transcripts>\n\n";
+		String transcript = "\n<Customer Transcripts>\n\n";
 		Iterator<Entry<Account, ServiceUsage>> it = entryList.iterator();
 		while (it.hasNext())
 		{
@@ -144,7 +207,7 @@ public abstract class DigitalServiceProvider implements PaymentSystem
 			int counter = 1;
 			for (Product p : nextEntry.getValue().getProducts())
 			{
-				transcript += counter + ") $" + (p.getpPrice()*p.getpAmount()) +
+				transcript += counter + ") $" + (new DecimalFormat("0.00").format(p.getpPrice()*p.getpAmount())) +
 						" (" + p.getpAmount() + " " + p.getpName() + " @ $" + p.getpPrice() + " each)\n";
 				counter++;
 			}

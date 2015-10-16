@@ -1,7 +1,14 @@
 import java.util.ArrayList;
 
+/**
+ * The Class CloudUsage.
+ */
 public class CloudUsage extends ServiceUsage
 {
+	
+	/**
+	 * Instantiates a new cloud usage.
+	 */
 	public CloudUsage()
 	{
 		super("Cloud Service");
