@@ -30,6 +30,12 @@ public class Director {
 	return film_directors;
     }
     
+    public static void addDirector(String name) {
+	if (!Director.contains(name)) {
+	    Director.directors.add(name);
+	}
+    }
+    
     public static boolean contains(String name) {
 	Iterator<String> it = Director.directors.iterator();
 	while (it.hasNext()) {
