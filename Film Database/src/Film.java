@@ -9,4 +9,8 @@ public class Film {
     private Rating rating;
     private int[] directors;
     private int[] casts;
+    
+    public Film() {
+	
+    }
 }
