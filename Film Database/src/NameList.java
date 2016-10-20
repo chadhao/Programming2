@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 
 /**
@@ -9,9 +8,9 @@ import java.util.Iterator;
  */
 public class NameList {
     private ArrayList<String> names;
-        
-    public NameList(ArrayList<String> names) {
-	this.names = new ArrayList<>(new HashSet<>(names));
+    
+    public NameList() {
+	this.names = new ArrayList<>();
     }
     
     public String[] getName(int[] index) {
@@ -25,7 +24,7 @@ public class NameList {
 	return name_list;
     }
     
-    public int[] getDirectorList(String[] name) {
+    public int[] getNameList(String[] name) {
 	int[] name_index_list = new int[name.length];
 	for (int i = 0; i < name.length; i++) {
 	    name_index_list[i] = contains(name[i]);
@@ -36,7 +35,7 @@ public class NameList {
 	return name_index_list;
     }
     
-    public void addDirector(String[] name) {
+    public void addName(String[] name) {
 	for (String one_name : name) {
 	    if (contains(one_name) == -1) {
 		this.names.add(Utils.formatName(one_name));
